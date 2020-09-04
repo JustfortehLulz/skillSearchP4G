@@ -41,20 +41,6 @@ def PersonaData(link):
 			f.write(line+"\n")
 			break
 	f.close()
-			
-	
-
-
-
-
-######################################## MONGODB STUFF ########################################
-# client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
-# db = client.admin
-
-
-# client.close()
-
-######################################## MONGODB STUFF ########################################
 
 ################# scraper ###################
 

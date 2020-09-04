@@ -415,7 +415,7 @@ class gui:
 
 		spacePos2 = skill.find(" ",spacePos+2,-1)
 		print(spacePos2)
-		if(spacePos != -1):
+		if(spacePos2 != -1):
 			nameSkill = nameSkill[0:spacePos2] + " " + skill[spacePos2+1].upper()+skill[spacePos2+2:].lower()
 			### list of words that are not capatilize
 			# of, For, Man's, to 

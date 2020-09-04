@@ -10,7 +10,7 @@ import pymongo
 
 ## Persona
 #connection
-client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
 # database
 db = client.Persona
 # collection inside the database

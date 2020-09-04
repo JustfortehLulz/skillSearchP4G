@@ -13,7 +13,7 @@ class pSkill:
 
 	# finds the skill in the mongodb
 	def findSkill(self):
-		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Skills?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://<usernamne>:<password>@cluster0.mrb1o.mongodb.net/Persona_Skills?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Skills
 		result = collection.find({"Skill":self.name})
@@ -56,7 +56,7 @@ class Persona:
 
 	### finds persona with matching skill from mongoDB
 	def findPersona(self,skill):
-		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Data
 		result = collection.find({"Skills":{"$elemMatch":{"Skill":skill}}})
@@ -257,7 +257,7 @@ class gui:
 
 	### grabs persona data from MongoDB
 	def getPersonaData(self,name):
-		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Data
 		res = collection.find({"Name":name})
@@ -391,8 +391,6 @@ class gui:
 
 	### displays Persona data 
 	def displayPersona(self):
-		### sort here??????
-
 
 		for i in range(len(self.array)):
 			self.leveltxt[i].set(str(self.array[i].level))

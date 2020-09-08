@@ -13,7 +13,7 @@ class pSkill:
 
 	# finds the skill in the mongodb
 	def findSkill(self):
-		client = pymongo.MongoClient("mongodb+srv://<usernamne>:<password>@cluster0.mrb1o.mongodb.net/Persona_Skills?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Skills?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Skills
 		result = collection.find({"Skill":self.name})
@@ -56,7 +56,7 @@ class Persona:
 
 	### finds persona with matching skill from mongoDB
 	def findPersona(self,skill):
-		client = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Data
 		result = collection.find({"Skills":{"$elemMatch":{"Skill":skill}}})
@@ -91,6 +91,16 @@ class gui:
 
 		self.searchBtn = tk.Button(self.master,text="Search",command = self.search)
 		self.searchBtn.grid(row = 0,column = 2)
+
+		self.pgreeting = tk.Label(self.master,text = "Enter Persona Name: ")
+		self.pgreeting.grid(row = 0,column = 3)
+
+		self.pTxt = tk.Entry(self.master)
+		self.pTxt.grid(row=0,column = 4)
+
+		self.persona = tk.Button(self.master,text = "Find Persona",command = self.pWindow)
+		self.persona.grid(row = 0,column = 5)
+
 
 		self.setChangeableLabels()
 
@@ -130,6 +140,199 @@ class gui:
 			if(col == 4):
 				col = 2
 
+	def setnewWindow(self):
+		# self.sName = tk.StringVar()
+		# self.sName.set("")
+		# self.resName = tk.Label(self.master,textvariable=self.sName)
+		# self.resName.grid(row=2,column=0)
+		# self.window = tk.Toplevel(self.master)
+		# self.window.geometry("1000x700")
+
+		self.personaName = tk.StringVar()
+		self.personaName.set("")
+		self.personaNameLabel = tk.Label(self.window, textvariable = self.personaName)
+		self.personaNameLabel.grid(row = 0 , column = 0)
+
+		self.arcanaLabel = tk.Label(self.window,text = "Arcana")
+		self.arcanaLabel.grid(row = 0,column = 1)
+
+		self.arcanaVal = tk.StringVar()
+		self.arcanaVal.set("")
+		self.arcanaLabel = tk.Label(self.window,textvariable = self.arcanaVal)
+		self.arcanaLabel.grid(row = 1,column = 1)
+
+		self.lvlLabel = tk.Label(self.window,text = "Level")
+		self.lvlLabel.grid(row = 0,column=2)
+
+		self.levelTxt = tk.StringVar()
+		self.levelTxt.set("")
+		self.levelLabel = tk.Label(self.window,textvariable = self.levelTxt)
+		self.levelLabel.grid(row = 1,column = 2)
+
+		self.strengthLabel = tk.Label(self.window,text = "Strength")
+		self.strengthLabel.grid(row = 2,column = 0)
+
+		self.strengthVal = tk.StringVar()
+		self.strengthVal.set("")
+		self.strLabel = tk.Label(self.window,textvariable = self.strengthVal)
+		self.strLabel.grid(row = 2, column = 1)
+
+		self.magicLabel = tk.Label(self.window,text = "Magic")
+		self.magicLabel.grid(row = 3, column = 0)
+
+		self.magicVal = tk.StringVar()
+		self.magicVal.set("")
+		self.mgLabel = tk.Label(self.window,textvariable = self.magicVal)
+		self.mgLabel.grid(row = 3, column = 1)
+
+		self.enduranceLabel = tk.Label(self.window, text = "Endurance")
+		self.enduranceLabel.grid(row = 4, column = 0)
+
+		self.enduranceVal = tk.StringVar()
+		self.enduranceVal.set("")
+		self.endLabel = tk.Label(self.window, textvariable = self.enduranceVal)
+		self.endLabel.grid(row = 4 , column = 1)
+
+		self.agilityLabel = tk.Label(self.window, text = "Agility")
+		self.agilityLabel.grid(row = 5 , column = 0)
+
+		self.agilityVal = tk.StringVar()
+		self.agilityVal.set("")
+		self.agLabel = tk.Label(self.window, textvariable = self.agilityVal)
+		self.agLabel.grid(row = 5, column = 1)
+
+		self.luckLabel = tk.Label(self.window, text = "Luck")
+		self.luckLabel.grid(row = 6, column = 0)
+
+		self.luckVal = tk.StringVar()
+		self.luckVal.set("")
+		self.lkLabel = tk.Label(self.window,textvariable = self.luckVal)
+		self.lkLabel.grid(row = 6, column = 1)
+
+
+
+		self.inheritLabel = tk.Label(self.window, text = "Inherit")
+		self.inheritLabel.grid(row = 7, column = 0)
+
+		self.inheritVal = tk.StringVar()
+		self.inheritVal.set("")
+		self.inherLabel = tk.Label(self.window,textvariable = self.inheritVal)
+		self.inherLabel.grid(row = 8, column = 0)
+
+		self.reflectLabel = tk.Label(self.window,text = "Reflects")
+		self.reflectLabel.grid(row = 7, column = 1)
+
+		self.reflectVal = tk.StringVar()
+		self.reflectVal.set("")
+		self.refLabel = tk.Label(self.window,textvariable = self.reflectVal)
+		self.refLabel.grid(row = 8, column = 1)
+
+		self.absorbsLabel = tk.Label(self.window,text = "Absorbs")
+		self.absorbsLabel.grid(row = 7, column = 2)
+
+		self.absorbsVal = tk.StringVar()
+		self.absorbsVal.set("")
+		self.absLabel = tk.Label(self.window,textvariable = self.absorbsVal)
+		self.absLabel.grid(row = 8, column = 2)
+
+		self.blockLabel = tk.Label(self.window,text = "Block")
+		self.blockLabel.grid(row = 7, column = 3)
+
+		self.blockVal = tk.StringVar()
+		self.blockVal.set("")
+		self.blkLabel = tk.Label(self.window,textvariable = self.blockVal)
+		self.blkLabel.grid(row = 8, column = 3)
+
+		self.resistsLabel = tk.Label(self.window,text = "Resists")
+		self.resistsLabel.grid(row = 7, column = 4)
+
+		self.resistsVal = tk.StringVar()
+		self.resistsVal.set("")
+		self.resLabel = tk.Label(self.window,textvariable = self.resistsVal)
+		self.resLabel.grid(row = 8 , column = 4)
+
+		self.weakLabel = tk.Label(self.window, text = "Weak")
+		self.weakLabel.grid(row = 7, column = 5)
+
+		self.weakVal = tk.StringVar()
+		self.weakVal.set("")
+		self.wkLabel = tk.Label(self.window,textvariable = self.weakVal)
+		self.wkLabel.grid(row = 8, column = 5)
+
+
+		sLabels = ["Skill","Cost","Effect","Skill_Level"]
+
+		skillLbl = tk.Label(self.window,text = sLabels[0])
+		skillLbl.grid(row = 9, column = 0)
+
+		cstLbl = tk.Label(self.window,text = sLabels[1])
+		cstLbl.grid(row = 9,column = 3)
+
+		effLbl = tk.Label(self.window,text = sLabels[2])
+		effLbl.grid(row = 9, column = 2)
+
+		slvlLbl = tk.Label(self.window, text = sLabels[3])
+		slvlLbl.grid(row = 9,column =4)
+
+
+### for the persona search button
+	def pWindow(self):
+		persona = self.pTxt.get()
+
+		print("PERSONA: " + str(persona))
+		res = self.getPersonaData(persona)
+
+		self.window = tk.Toplevel(self.master)
+		self.window.geometry("1000x700")
+		
+		self.setnewWindow()
+
+		for doc in res:
+			self.personaName.set(str(persona))
+
+			self.arcanaVal.set(str(doc["Arcana"]))
+
+			self.levelTxt.set(str(doc["Level"]))
+
+			self.strengthVal.set(str(doc["Strength"]))
+
+			self.magicVal.set(str(doc["Magic"]))
+
+			self.enduranceVal.set(str(doc["Endurance"]))
+
+			self.agilityVal.set(str(doc["Agility"]))
+
+			self.luckVal.set(str(doc["Luck"]))
+
+			self.inheritVal.set(str(doc["Inherit"]))
+
+			self.reflectVal.set(str(doc["Reflects"]))
+
+			self.absorbsVal.set(str(doc["Absorbs"]))
+
+			self.blockVal.set(str(doc["Block"]))
+
+			self.resistsVal.set(str(doc["Resists"]))
+
+			self.weakVal.set(str(doc["Weak"]))
+
+			for i in range(len(doc["Skills"])):
+				skillVal = tk.Label(self.window,text = str(doc["Skills"][i]["Skill"]))
+				skillVal.grid(row = 10+i,column = 0)
+
+				effVal = tk.Label(self.window,text = str(doc["Skills"][i]["Effect"]))
+				effVal.grid(row = 10+i,column = 2)
+
+				cstVal = tk.Label(self.window,text = str(doc["Skills"][i]["Cost"]))
+				cstVal.grid(row = 10+i,column = 3)
+
+				lvlVal = tk.Label(self.window,text = str(doc["Skills"][i]["Skill_Level"]))
+				lvlVal.grid(row = 10+i,column = 4) 
+
+		self.window.mainloop()
+
+
+
 	### creates new window when clicking on a Persona name
 	def newWindow(self,labelNum):
 		### when you click on it it shows the persona data
@@ -138,126 +341,156 @@ class gui:
 		if(pName != ""):
 			print(pName)
 
-			window = tk.Toplevel(self.master)
-			window.geometry("1000x700")
+			
+			self.window = tk.Toplevel(self.master)
+			self.window.geometry("1000x700")
 			
 			res = self.getPersonaData(pName)
 
+			self.setnewWindow()
 			for doc in res:
+				### set everything using stringVar
 
-				nameVal = tk.Label(window,text = pName)
-				nameVal.grid(row = 0, column = 0)
+				self.personaName.set(str(pName))
 
-				arcanaLabel = tk.Label(window,text = "Arcana")
-				arcanaLabel.grid(row = 0,column = 1)
+				self.arcanaVal.set(str(doc["Arcana"]))
 
-				arcanaVal = tk.Label(window,text = str(doc["Arcana"]))
-				arcanaVal.grid(row = 1,column = 1)
+				self.levelTxt.set(str(doc["Level"]))
 
-				lvlLabel = tk.Label(window,text = "Level")
-				lvlLabel.grid(row = 0,column=2)
+				self.strengthVal.set(str(doc["Strength"]))
 
-				lvlVal = tk.Label(window,text = str(doc["Level"]))
-				lvlVal.grid(row = 1 , column = 2)
+				self.magicVal.set(str(doc["Magic"]))
 
-				strLbl = tk.Label(window,text = "Strength")
-				strLbl.grid(row = 2,column = 0)
+				self.enduranceVal.set(str(doc["Endurance"]))
 
-				strVal = tk.Label(window,text = str(doc["Strength"]))
-				strVal.grid(row = 2, column = 1)
+				self.agilityVal.set(str(doc["Agility"]))
 
-				mgLbl = tk.Label(window,text = "Magic")
-				mgLbl.grid(row = 3,column = 0)
+				self.luckVal.set(str(doc["Luck"]))
 
-				magVal = tk.Label(window,text = str(doc["Magic"]))
-				magVal.grid(row = 3,column = 1)
+				self.inheritVal.set(str(doc["Inherit"]))
 
-				endLbl = tk.Label(window,text = "Endurance")
-				endLbl.grid(row = 4,column = 0)
+				self.reflectVal.set(str(doc["Reflects"]))
 
-				endVal = tk.Label(window,text = str(doc["Endurance"]))
-				endVal.grid(row = 4,column = 1)
+				self.absorbsVal.set(str(doc["Absorbs"]))
 
-				agLbl = tk.Label(window,text = "Agility")
-				agLbl.grid(row = 5, column = 0)
+				self.blockVal.set(str(doc["Block"]))
 
-				agVal = tk.Label(window,text = str(doc["Agility"]))
-				agVal.grid(row = 5,column = 1)
+				self.resistsVal.set(str(doc["Resists"]))
 
-				lkVal = tk.Label(window,text = "Luck")
-				lkVal.grid(row = 6,column = 0)
+				self.weakVal.set(str(doc["Weak"]))
+				# nameVal = tk.Label(window,text = pName)
+				# nameVal.grid(row = 0, column = 0)
 
-				lkVal = tk.Label(window,text = str(doc["Luck"]))
-				lkVal.grid(row = 6, column = 1)
+				# arcanaLabel = tk.Label(window,text = "Arcana")
+				# arcanaLabel.grid(row = 0,column = 1)
 
-				inherLbl = tk.Label(window,text = "Inherit")
-				inherLbl.grid(row = 7, column = 0)
+				# arcanaVal = tk.Label(window,text = str(doc["Arcana"]))
+				# arcanaVal.grid(row = 1,column = 1)
 
-				inheritVal = tk.Label(window, text = str(doc["Inherit"]))
-				inheritVal.grid(row = 8, column = 0)
+				# lvlLabel = tk.Label(window,text = "Level")
+				# lvlLabel.grid(row = 0,column=2)
 
-				refLbl = tk.Label(window, text = "Reflects")
-				refLbl.grid(row = 7, column = 1)
+				# lvlVal = tk.Label(window,text = str(doc["Level"]))
+				# lvlVal.grid(row = 1 , column = 2)
 
-				reflectVal = tk.Label(window, text = str(doc["Reflects"]))
-				reflectVal.grid(row = 8, column = 1)
+				# strLbl = tk.Label(window,text = "Strength")
+				# strLbl.grid(row = 2,column = 0)
 
-				abLbl = tk.Label(window,text = "Absorbs")
-				abLbl.grid(row = 7, column = 2)
+				# strVal = tk.Label(window,text = str(doc["Strength"]))
+				# strVal.grid(row = 2, column = 1)
 
-				absorbVal = tk.Label(window,text = str(doc["Absorbs"]))
-				absorbVal.grid(row = 8, column = 2)
+				# mgLbl = tk.Label(window,text = "Magic")
+				# mgLbl.grid(row = 3,column = 0)
 
-				blkLbl = tk.Label(window,text = "Block")
-				blkLbl.grid(row = 7, column = 3)
+				# magVal = tk.Label(window,text = str(doc["Magic"]))
+				# magVal.grid(row = 3,column = 1)
 
-				blkVal = tk.Label(window,text = str(doc["Block"]))
-				blkVal.grid(row = 8, column = 3)
+				# endLbl = tk.Label(window,text = "Endurance")
+				# endLbl.grid(row = 4,column = 0)
 
-				resLbl = tk.Label(window, text = "Resists")
-				resLbl.grid(row = 7, column = 4)
+				# endVal = tk.Label(window,text = str(doc["Endurance"]))
+				# endVal.grid(row = 4,column = 1)
 
-				resVal = tk.Label(window, text = str(doc["Resists"]))
-				resVal.grid(row = 8, column = 4)
+				# agLbl = tk.Label(window,text = "Agility")
+				# agLbl.grid(row = 5, column = 0)
 
-				wkLbl = tk.Label(window, text = "Weak")
-				wkLbl.grid(row = 7, column = 5)
+				# agVal = tk.Label(window,text = str(doc["Agility"]))
+				# agVal.grid(row = 5,column = 1)
 
-				wkVal = tk.Label(window,text = str(doc["Weak"]))
-				wkVal.grid(row=8,column =5)
+				# lkVal = tk.Label(window,text = "Luck")
+				# lkVal.grid(row = 6,column = 0)
 
-				sLabels = ["Skill","Cost","Effect","Skill_Level"]
+				# lkVal = tk.Label(window,text = str(doc["Luck"]))
+				# lkVal.grid(row = 6, column = 1)
 
-				skillLbl = tk.Label(window,text = sLabels[0])
-				skillLbl.grid(row = 9, column = 0)
+				# inherLbl = tk.Label(window,text = "Inherit")
+				# inherLbl.grid(row = 7, column = 0)
 
-				cstLbl = tk.Label(window,text = sLabels[1])
-				cstLbl.grid(row = 9,column = 3)
+				# inheritVal = tk.Label(window, text = str(doc["Inherit"]))
+				# inheritVal.grid(row = 8, column = 0)
 
-				effLbl = tk.Label(window,text = sLabels[2])
-				effLbl.grid(row = 9, column = 2)
+				# refLbl = tk.Label(window, text = "Reflects")
+				# refLbl.grid(row = 7, column = 1)
 
-				slvlLbl = tk.Label(window, text = sLabels[3])
-				slvlLbl.grid(row = 9,column =4)
+				# reflectVal = tk.Label(window, text = str(doc["Reflects"]))
+				# reflectVal.grid(row = 8, column = 1)
+
+				# abLbl = tk.Label(window,text = "Absorbs")
+				# abLbl.grid(row = 7, column = 2)
+
+				# absorbVal = tk.Label(window,text = str(doc["Absorbs"]))
+				# absorbVal.grid(row = 8, column = 2)
+
+				# blkLbl = tk.Label(window,text = "Block")
+				# blkLbl.grid(row = 7, column = 3)
+
+				# blkVal = tk.Label(window,text = str(doc["Block"]))
+				# blkVal.grid(row = 8, column = 3)
+
+				# resLbl = tk.Label(window, text = "Resists")
+				# resLbl.grid(row = 7, column = 4)
+
+				# resVal = tk.Label(window, text = str(doc["Resists"]))
+				# resVal.grid(row = 8, column = 4)
+
+				# wkLbl = tk.Label(window, text = "Weak")
+				# wkLbl.grid(row = 7, column = 5)
+
+				# wkVal = tk.Label(window,text = str(doc["Weak"]))
+				# wkVal.grid(row=8,column =5)
+
+				# sLabels = ["Skill","Cost","Effect","Skill_Level"]
+
+				# skillLbl = tk.Label(window,text = sLabels[0])
+				# skillLbl.grid(row = 9, column = 0)
+
+				# cstLbl = tk.Label(window,text = sLabels[1])
+				# cstLbl.grid(row = 9,column = 3)
+
+				# effLbl = tk.Label(window,text = sLabels[2])
+				# effLbl.grid(row = 9, column = 2)
+
+				# slvlLbl = tk.Label(window, text = sLabels[3])
+				# slvlLbl.grid(row = 9,column =4)
 
 				for i in range(len(doc["Skills"])):
-					skillVal = tk.Label(window,text = str(doc["Skills"][i]["Skill"]))
+					skillVal = tk.Label(self.window,text = str(doc["Skills"][i]["Skill"]))
 					skillVal.grid(row = 10+i,column = 0)
 
-					effVal = tk.Label(window,text = str(doc["Skills"][i]["Effect"]))
+					effVal = tk.Label(self.window,text = str(doc["Skills"][i]["Effect"]))
 					effVal.grid(row = 10+i,column = 2)
 
-					cstVal = tk.Label(window,text = str(doc["Skills"][i]["Cost"]))
+					cstVal = tk.Label(self.window,text = str(doc["Skills"][i]["Cost"]))
 					cstVal.grid(row = 10+i,column = 3)
 
-					lvlVal = tk.Label(window,text = str(doc["Skills"][i]["Skill_Level"]))
+					lvlVal = tk.Label(self.window,text = str(doc["Skills"][i]["Skill_Level"]))
 					lvlVal.grid(row = 10+i,column = 4) 
 
-			window.mainloop()
+			self.window.mainloop()
 
 	### grabs persona data from MongoDB
 	def getPersonaData(self,name):
-		client = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb+srv://JY:mdbx1critheal@cluster0.mrb1o.mongodb.net/Persona_Data?retryWrites=true&w=majority")
 		db = client.Persona
 		collection = db.Persona_Data
 		res = collection.find({"Name":name})

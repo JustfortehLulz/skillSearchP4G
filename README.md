@@ -11,3 +11,4 @@ Main GUI program
 Features:
   Search up any persona skill to find which personas have that skill.
   Clicking on the resultant persona will show stats, elemental weakness, and other learned skills.
+  Reads data off from the MongoDB in order to 
